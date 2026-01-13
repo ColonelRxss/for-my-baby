@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
   background-image: url("Background.webp");
@@ -27,9 +28,41 @@
       margin: 10px;
       cursor: pointer;
     }
+  .content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+button {
+  width: auto;
+}
+
+/* 📱 Mobile fixes */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .images img {
+    width: 90px;
+    margin: 6px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 10px 16px;
+  }
+}
   </style>
 </head>
 <body>
+  <div class="content">
 
   <h1>💖 Marsyyy Will you be my Valentine? 💖</h1>
   <div class="images">
@@ -51,5 +84,19 @@
   <button onclick="alert('YAY!! 💕')">Yes</button>
   <button onclick="alert('Yea Bai :(')">No</button>
 
+</div>
+  <script>
+  const noButton = document.getElementById("no");
+
+  function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noButton.style.left = `${x}px`;
+    noButton.style.top = `${y}px`;
+  }
+
+  noButton.addEventListener("mouseover", moveNoButton);
+  noButton.addEventListener("touchstart", moveNoButton);
+</script>
 </body>
 </html>
