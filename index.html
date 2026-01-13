@@ -4,7 +4,22 @@
   <title>Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    .sticker {
+  position: absolute;
+  width: 80px;
+  border-radius: 10px;
+  transform: rotate(var(--rotation));
+  transition: transform 0.3s ease;
+}
+
+.sticker:hover {
+  transform: scale(1.1) rotate(var(--rotation));
+  z-index: 10;
+}
+   body {
+  position: relative;
+  overflow: hidden;
+}
   background-image: url("Background.jpeg");
   background-size: cover;
   background-position: center;
@@ -66,19 +81,19 @@ button {
 
   <h1>💖 Marsyyy Will you be my Valentine? 💖</h1>
   <div class="images">
-    <img src="Sticker 1.jpg" alt="Us 💕">
-<img src="Sticker 2.jpg" alt="Another memory 💖">
+    <img src="Sticker 1.jpg" class="sticker">
+<img src="Sticker 2.jpg" class="sticker">
   <!-- Snoopy -->
-  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="Snoopy">
-  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Snoopy love">
-    <img src="https://media.desenio.com/site_images/685d718a67fd6077b6f2e032_2000914833_18197-5.jpg" alt="Us 💕">
-    <img src="https://www.shutterstock.com/image-photo/snoopy-260nw-2709284725.jpg" alt="Us 💕">
-    <img src="https://i.ebayimg.com/images/g/avkAAOSwjkhfuIco/s-l400.jpg" alt="Us 💕">
-    <img src="https://www.diamondartclub.com/cdn/shop/files/happy-snoopy-diamond-art-painting-43468564955329.jpg" alt="Us 💕">
+  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" class="sticker">
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="sticker">
+    <img src="https://media.desenio.com/site_images/685d718a67fd6077b6f2e032_2000914833_18197-5.jpg" class="sticker">
+    <img src="https://www.shutterstock.com/image-photo/snoopy-260nw-2709284725.jpg" class="sticker">
+    <img src="https://i.ebayimg.com/images/g/avkAAOSwjkhfuIco/s-l400.jpg" class="sticker">
+    <img src="https://www.diamondartclub.com/cdn/shop/files/happy-snoopy-diamond-art-painting-43468564955329.jpg" class="sticker">
 
   <!-- Cats -->
-  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cute cat">
-  <img src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" alt="Cute cat">
+  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" class="sticker">
+  <img src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" class="sticker">
 </div>
 
   <button onclick="alert('YAY!! 💕')">Yes</button>
@@ -97,6 +112,18 @@ button {
 
   noButton.addEventListener("mouseover", moveNoButton);
   noButton.addEventListener("touchstart", moveNoButton);
+
+  const stickers = document.querySelectorAll('.sticker');
+
+  stickers.forEach(sticker => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    const rotation = Math.random() * 40 - 20; // -20° to +20°
+
+    sticker.style.left = `${x}px`;
+    sticker.style.top = `${y}px`;
+    sticker.style.setProperty('--rotation', `${rotation}deg`);
+  });
 </script>
 </body>
 </html>
