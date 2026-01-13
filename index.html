@@ -3,127 +3,121 @@
 <head>
   <title>Be My Valentine?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    .sticker {
-  position: absolute;
-  width: 80px;
-  border-radius: 10px;
-  transform: rotate(var(--rotation));
-  transition: transform 0.3s ease;
-}
+    body {
+      position: relative;
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
 
-.sticker:hover {
-  transform: scale(1.1) rotate(var(--rotation));
-  z-index: 10;
-}
-   body {
-  position: relative;
-  overflow: hidden;
-}
-  background-image: url("Background.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  margin: 0;
-  min-height: 100vh;
-}
-    .images {
-  margin-top: 20px;
-}
+      background-image: url("Background.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+    }
 
-.images img {
-  width: 120px;
-  margin: 10px;
-}
-   
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
     button {
       font-size: 20px;
       padding: 10px 20px;
       margin: 10px;
       cursor: pointer;
     }
-  .content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
 
-h1 {
-  font-size: 2rem;
-  line-height: 1.2;
-}
+    /* Stickers */
+    .sticker {
+      position: absolute;
+      width: 80px;
+      border-radius: 10px;
+      z-index: 1;
+      transform: rotate(var(--rotation));
+      transition: transform 0.3s ease;
+      pointer-events: auto;
+    }
 
-button {
-  width: auto;
-}
+    .sticker:hover {
+      transform: scale(1.1) rotate(var(--rotation));
+      z-index: 10;
+    }
 
-/* 📱 Mobile fixes */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
+    /* Mobile */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
 
-  .images img {
-    width: 90px;
-    margin: 6px;
-  }
-
-  button {
-    font-size: 18px;
-    padding: 10px 16px;
-  }
-}
+      .sticker {
+        width: 65px;
+      }
+    }
   </style>
 </head>
-<body>
-  <div class="content">
 
-  <h1>💖 Marsyyy Will you be my Valentine? 💖</h1>
-  <div class="images">
-    <img src="Sticker 1.jpg" class="sticker">
-<img src="Sticker 2.jpg" class="sticker">
-  <!-- Snoopy -->
+<body>
+
+  <!-- Stickers FLOAT directly under body -->
+  <img src="Sticker 1.jpg" class="sticker">
+  <img src="Sticker 2.jpg" class="sticker">
+
   <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" class="sticker">
   <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" class="sticker">
-    <img src="https://media.desenio.com/site_images/685d718a67fd6077b6f2e032_2000914833_18197-5.jpg" class="sticker">
-    <img src="https://www.shutterstock.com/image-photo/snoopy-260nw-2709284725.jpg" class="sticker">
-    <img src="https://i.ebayimg.com/images/g/avkAAOSwjkhfuIco/s-l400.jpg" class="sticker">
-    <img src="https://www.diamondartclub.com/cdn/shop/files/happy-snoopy-diamond-art-painting-43468564955329.jpg" class="sticker">
-
-  <!-- Cats -->
+  <img src="https://media.desenio.com/site_images/685d718a67fd6077b6f2e032_2000914833_18197-5.jpg" class="sticker">
+  <img src="https://www.shutterstock.com/image-photo/snoopy-260nw-2709284725.jpg" class="sticker">
+  <img src="https://i.ebayimg.com/images/g/avkAAOSwjkhfuIco/s-l400.jpg" class="sticker">
+  <img src="https://www.diamondartclub.com/cdn/shop/files/happy-snoopy-diamond-art-painting-43468564955329.jpg" class="sticker">
   <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" class="sticker">
   <img src="https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif" class="sticker">
-</div>
 
-  <button onclick="alert('YAY!! 💕')">Yes</button>
-  <button onclick="alert('Yea Bai :(')">No</button>
+  <div class="content">
+    <h1>💖 Marsyyy Will you be my Valentine? 💖</h1>
 
-</div>
+    <button onclick="alert('YAY!! 💕')">Yes</button>
+    <button id="no">No</button>
+  </div>
+
   <script>
-  const noButton = document.getElementById("no");
+    window.onload = () => {
+      // Scatter stickers
+      document.querySelectorAll('.sticker').forEach(sticker => {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        const rotation = Math.random() * 40 - 20;
 
-  function moveNoButton() {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
-    noButton.style.left = `${x}px`;
-    noButton.style.top = `${y}px`;
-  }
+        sticker.style.left = x + "px";
+        sticker.style.top = y + "px";
+        sticker.style.setProperty('--rotation', rotation + "deg");
+      });
 
-  noButton.addEventListener("mouseover", moveNoButton);
-  noButton.addEventListener("touchstart", moveNoButton);
+      // Runaway No button
+      const noButton = document.getElementById("no");
 
-  const stickers = document.querySelectorAll('.sticker');
+      function moveNoButton() {
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 60);
+        noButton.style.position = "absolute";
+        noButton.style.left = x + "px";
+        noButton.style.top = y + "px";
+      }
 
-  stickers.forEach(sticker => {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 100);
-    const rotation = Math.random() * 40 - 20; // -20° to +20°
+      noButton.addEventListener("mouseover", moveNoButton);
+      noButton.addEventListener("touchstart", moveNoButton);
+    };
+  </script>
 
-    sticker.style.left = `${x}px`;
-    sticker.style.top = `${y}px`;
-    sticker.style.setProperty('--rotation', `${rotation}deg`);
-  });
-</script>
 </body>
 </html>
